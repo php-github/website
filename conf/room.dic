@@ -1,0 +1,83 @@
+[add]
+name["type"] = "string"
+name["optional"] = 0
+roomId["type"] = "uint"
+roomId["optional"] = 0
+roomType["type"] = "string"
+roomType["optional"] = 0
+flvUrl["type"] = "string"
+flvUrl["optional"] = 0
+backgroundUrl["type"] = "string"
+backgroundUrl["optional"] = 1
+beginDate["type"] = "date"
+beginDate["optional"] = 1
+local["type"] = "string"
+local["optional"] = 1
+coverUrl["type"] = "string"
+coverUrl["optional"] = 0
+source["type"] = "string"
+source["optional"] = 0
+weighting["type"] = "uint"
+weighting["optional"] = 1
+weighting["default"] = 0
+ctime["type"] = "date"
+ctime["optional"] = 0
+liveIn["type"] = "uint"
+liveIn["optional"] = 1
+liveIn["default"] = 1
+
+[updateById]
+_id["type"] = "id"
+_id["optional"] = 0
+name["type"] = "string"
+name["optional"] = 0
+roomId["type"] = "uint"
+roomId["optional"] = 0
+roomType["type"] = "string"
+roomType["optional"] = 0
+flvUrl["type"] = "string"
+flvUrl["optional"] = 0
+backgroundUrl["type"] = "string"
+backgroundUrl["optional"] = 1
+beginDate["type"] = "date"
+beginDate["optional"] = 1
+local["type"] = "string"
+local["optional"] = 1
+coverUrl["type"] = "string"
+coverUrl["optional"] = 0
+source["type"] = "string"
+source["optional"] = 0
+weighting["type"] = "uint"
+weighting["optional"] = 1
+weighting["default"] = 0
+ctime["type"] = "date"
+ctime["optional"] = 0
+liveIn["type"] = "uint"
+liveIn["optional"] = 1
+liveIn["default"] = 1
+
+
+[findById]
+id["type"] = "id"
+id["optional"] = 0
+
+[findByRoomId]
+roomId["type"] = "uint"
+roomId["optional"] = 0
+
+[getIndexRoom]
+limit["type"] = "uint"
+limit["optional"] = 1
+limit["default"] = 12
+skip["type"] = "uint"
+skip["optional"] = 1
+skip["default"] = 0
+roomType["type"] = "string"
+roomType["optional"] = 1
+roomType["default"] = '炽星'
+
+[updateNoLiveInRoom]
+ctime["type"] = "date"
+ctime["optional"] = 0
+
+[getRoomTypeCount]
