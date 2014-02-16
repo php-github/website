@@ -35,7 +35,10 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
 ?>
         </div>
         <div class="col-md-6 column">
-            <div id="live">
+            <div class="page-header">
+                <?php echo "<h1 align='center'><strong>{$arrRoom['name']}</strong></h1>"; ?>
+            </div>
+            <div id="live" align="center">
 <?php require(TEMPLATE_PATH . '/room/live.tpl');?>
             </div>
             <div id="duoshuo">

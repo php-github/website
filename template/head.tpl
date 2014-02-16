@@ -17,8 +17,8 @@ if ($strKeywords) {
 <?php
 echo <<<EOF
             <title>{$strTitle}看秀场 - 美女主播的代言人</title>
-            <meta name="description" content="{$strDesc}看秀场,美女主播的代言人" />
-            <meta name="keywords" content="{$strKeywords}看秀场,美女视频,美女直播" /> 
+            <meta name="description" content="{$strDesc}看秀场 - 美女主播的代言人" />
+            <meta name="keywords" content="{$strKeywords}看秀场 - 美女视频,美女直播" /> 
 EOF;
 ?>
             <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">

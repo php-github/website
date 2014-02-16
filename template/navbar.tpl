@@ -23,11 +23,11 @@ $strHelpActive = '/help' == ACTION_KEY ? 'active' : '';
 echo <<<EOF
                         <li class="{$strIndexActive}"><a href="/" class="navbar-link"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                         <li class="{$strRoomActive}"><a href="/room" class="navbar-link"><span class="glyphicon glyphicon-hd-video"></span> 秀场</a></li>
-                        <li class="{$strFoundActive}"><a href="/found" class="navbar-link"><span class="glyphicon glyphicon-globe"></span> 发现</a></li>
-                        <li class="{$strRankActive}"><a href="/rank" class="navbar-link"><span class="glyphicon glyphicon-list"></span> 排行榜</a></li>
-                        <li class="{$strMallActive}"><a href="/mall" class="navbar-link"><span class="glyphicon glyphicon-shopping-cart"></span> 商城</a></li>
-                        <li class="{$strAboutActive}"><a href="/about" class="navbar-link"><span class="glyphicon glyphicon-info-sign"></span> 关于</a></li>
-                        <li class="{$strHelpActive}"><a href="/help" class="navbar-link"><span class="glyphicon glyphicon-question-sign"></span> 帮助</a></li>
+                        <li class="{$strFoundActive} disabled"><a href="#" class="navbar-link"><span class="glyphicon glyphicon-globe"></span> 发现</a></li>
+                        <li class="{$strRankActive} disabled"><a href="#" class="navbar-link"><span class="glyphicon glyphicon-list"></span> 排行榜</a></li>
+                        <li class="{$strMallActive} disabled"><a href="#" class="navbar-link"><span class="glyphicon glyphicon-shopping-cart"></span> 商城</a></li>
+                        <li class="{$strAboutActive} disabled"><a href="#" class="navbar-link"><span class="glyphicon glyphicon-info-sign"></span> 关于</a></li>
+                        <li class="{$strHelpActive} disabled"><a href="#" class="navbar-link"><span class="glyphicon glyphicon-question-sign"></span> 帮助</a></li>
 EOF;
 ?>
                     </ul>

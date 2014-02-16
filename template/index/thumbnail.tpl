@@ -10,10 +10,13 @@ echo <<<EOF
                     <img alt="300x200" src="{$arrItem['coverUrl']}" />
                 </a>
                 <div class="caption">
-                    <h4 style="text-align:center">{$arrItem['name']}</h4>
+                    <a href="/room/{$arrItem['_id']}" target="_blank">
+                        <h4 style="text-align:center">{$arrItem['name']}</h4>
+                    </a>
                     <span class="label label-primary">{$arrItem['local']}</span>
                     <span class="label label-info">{$strLiveIn}</span>
                     <span class="label label-primary">{$arrItem['roomType']}</span>
+                    <span class="label label-info">{$arrItem['source']}</span>
                     <p></p>
                 </div>
             </div>
