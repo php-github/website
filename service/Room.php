@@ -12,9 +12,6 @@ class Room extends \Tofu\Service
         $arrMaxTime = array_pop(iterator_to_array($objClub->find(array(), array('ctime' => 1))->sort(array('ctime' => -1))->limit(1)));
         $arrRoomList = iterator_to_array($objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $arrArguments['roomType']))->sort(array('weighting' => -1))->skip($arrArguments['skip'])->limit($intLimit));
 
-        $arrRoomList = $objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $arrArguments['roomType']));
-
-
         $bolHasPrev = true;
         $bolHasMore = false;
         if (0 === $arrArguments['skip']) {

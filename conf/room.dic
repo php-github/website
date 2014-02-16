@@ -68,7 +68,7 @@ roomId["optional"] = 0
 [getIndexRoom]
 limit["type"] = "uint"
 limit["optional"] = 1
-limit["default"] = 12
+limit["default"] = 200
 skip["type"] = "uint"
 skip["optional"] = 1
 skip["default"] = 0
