@@ -7,7 +7,7 @@ echo <<<EOF
         <div class="col-md-4">
             <div class="thumbnail">
                 <a href="/room/{$arrItem['_id']}" class="thumbnail" style="text-decoration:none" target="_blank">
-                    <img alt="300x200" src="{$arrItem['coverUrl']}" />
+                    <img alt="{$arrItem['name']}" src="{$arrItem['coverUrl']}" />
                 </a>
                 <div class="caption">
                     <a href="/room/{$arrItem['_id']}" target="_blank">
