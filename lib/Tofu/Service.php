@@ -30,7 +30,7 @@ class Service
         }
     }
 
-    public function execute($strMethodName, $arrArguments = array())
+    public function execute($strMethodName, $arrArguments = array(), $intExpiration = 0)
     {
         if (!is_array($this->arrDictionary[$strMethodName])) {
             $strClass = get_class($this);
@@ -38,24 +38,59 @@ class Service
         }
         $objDictionary = new Dictionary($this->arrDictionary[$strMethodName]);
         $arrArguments = $objDictionary->checkParams($arrArguments);
+
+        if ($intExpiration) {
+            try {
+                return $this->getFromCache($strMethodName, $arrArguments);
+            } catch (\RuntimeException $e) {
+                user_error("{$strMethodName} cache not hit");
+            }
+        }
+
         if ($strMethodName === "findById") {
             //查
-            return $this->findById($arrArguments['id']);
-        } else if ($strMethodName === "mfindById") {
-            //批量查
-            return $this->mfindById($arrArguments);
-        } else if ($strMethodName === "add") {
-            //增
-            return $this->add($arrArguments);
-        } else if ($strMethodName === "delById") {
-            //删
-            return $this->delById($arrArguments);
-        } else if ($strMethodName === "updateById") {
-            //改
-            return $this->updateById($arrArguments);
+            $arrReturn = $this->findById($arrArguments['id']);
         } else {
-            return call_user_func(array($this, $strMethodName), $arrArguments);
+            $arrReturn = call_user_func(array($this, $strMethodName), $arrArguments);
         }
+        if ($intExpiration) {
+            try {
+                $this->setToCache($strMethodName, $arrArguments, $arrReturn, $intExpiration);
+            } catch (\RuntimeException $e) {
+                user_error("{$strMethodName} cache not set");
+            }
+        }
+        return $arrReturn;
+    }
+
+    protected function getFromCache($strMethodName, $arrArguments)
+    {
+        $strCacheKey = $this->getCacheKey($strMethodName, $arrArguments);
+        $objMemcached = new \Memcached();
+        $objMemcached->addServer('localhost', 11211);
+        $arrReturn = $objMemcached->get($strCacheKey);
+        if ($objMemcached->getResultCode() == \Memcached::RES_NOTFOUND) {
+            throw new \RuntimeException();
+        }
+        return $arrReturn;
+    }
+
+    protected function setToCache($strMethodName, $arrArguments, $arrData, $intExpiration)
+    {
+        $strCacheKey = $this->getCacheKey($strMethodName, $arrArguments);
+        $objMemcached = new \Memcached();
+        $objMemcached->addServer('localhost', 11211);
+        $objMemcached->set($strCacheKey, $arrData, $intExpiration);
+        if ($objMemcached->getResultCode() !== \Memcached::RES_SUCCESS) {
+            throw new \RuntimeException();
+        }
+        return $arrReturn;
+    }
+
+    protected function getCacheKey($strMethodName, $arrArguments)
+    {
+        $strClassName = get_class($this);
+        return sprintf("%s-%s-%s", $strClassName, $strMethodName, json_encode($arrArguments));
     }
 
     public function find($arrQuery)

@@ -1,5 +1,4 @@
 <div align="center">
-    <small>@2014 kanxiuchang 沪ICP备14004577号-1</small>
 </div>
 <!-- JiaThis Button BEGIN -->
 <script type="text/javascript">
