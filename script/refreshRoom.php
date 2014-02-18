@@ -27,6 +27,9 @@ foreach ($arrRid as $strKey => $strRid) {
     $arrRooms[$strRid]['pic'] = str_replace("\/", "/", $arrPic[$strKey]);
     $arrRooms[$strRid]['is_recommend'] = $arrIsRecommend[$strKey];
     $arrRooms[$strRid]['rtype'] = $arrRType[$strKey];
+    if ('未知' == rtype2roomType($arrRType[$strKey])) {
+        continue;
+    }
     $arrRooms[$strRid]['count'] = $arrCount[$strKey];
     $arrUrls[] = "http://v.6.cn/$strRid";
 }

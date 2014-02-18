@@ -21,8 +21,7 @@ echo <<<EOF
             <meta name="keywords" content="{$strKeywords}看秀场 - 美女视频,美女直播" /> 
 EOF;
 ?>
-            <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-            <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+            <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
             <style type="text/css">
                 .transparent
                 {
