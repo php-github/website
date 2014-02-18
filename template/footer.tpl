@@ -1,7 +1,7 @@
 <div class="pull-right">
 <!-- JiaThis Button BEGIN -->
     <div class="jiathis_style_32x32">
-        <a class="jiathis_follow_tsina" rel="http://weibo.com/p/1005055038293414"></a>
+        <a class="jiathis_follow_tsina" rel="http://weibo.com/kanxiuchang"></a>
         <a class="jiathis_follow_tqq" rel="http://t.qq.com/kanxiuchang"></a>
         <span class="jiathis_txt">关注我们</span>
     </div>
