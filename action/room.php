@@ -4,6 +4,8 @@ $objRoomService = new service\Room('club', 'room', CONF_PATH . '/room.dic');
 try {
     $arrRoom = $objRoomService->execute('findById', array('id' => $_REQUEST['id']), 60);
 } catch (exception $e) {
+    $arrRoom['name'] = '';
+    $arrRoom['backgroundUrl'] = '';
 }
 ?>
 <?php
