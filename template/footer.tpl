@@ -1,12 +1,4 @@
 <div class="pull-right">
-<!-- JiaThis Button BEGIN -->
-    <div class="jiathis_style_32x32">
-        <a class="jiathis_follow_tsina" rel="http://weibo.com/kanxiuchang"></a>
-        <a class="jiathis_follow_tqq" rel="http://t.qq.com/kanxiuchang"></a>
-        <span class="jiathis_txt">关注我们</span>
-    </div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 </div>
 <!-- JiaThis Button BEGIN -->
 <script type="text/javascript">

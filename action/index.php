@@ -25,12 +25,18 @@ require(TEMPLATE_PATH . '/index/carousel.tpl');
 require(TEMPLATE_PATH . '/index/nav-pills.tpl');
 ?>
         </div>
+        <div class="col-md-2 column pull-right">
+<?php
+require(TEMPLATE_PATH . '/weibo.tpl');
+?>
+        </div>
         <div class="col-md-8 column">
 <?php
 require(TEMPLATE_PATH . '/index/thumbnail.tpl');
 require(TEMPLATE_PATH . '/page.tpl');
 ?>
         </div>
+        
     </div>
 </div>
 </body>
