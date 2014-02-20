@@ -31,6 +31,7 @@ EOF;
                     opacity: 0.8;
                 }
             </style>
+            <script src="http://siteapp.baidu.com/static/webappservice/uaredirect.js" type="text/javascript"></script><script type="text/javascript">uaredirect("http://kanxiuchang.com","http://www.kanxiuchang.com");</script>
             <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a77ff727fc9cd39bb892102948525a25";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();</script>
             <?php echo $strHead;?>
     </head>
