@@ -56,7 +56,7 @@ class Room extends \Tofu\Service
 
     public function getRoomTypeName()
     {
-        return array('炽星', '超星', '巨星', '明星', '红人', '舞区', 'MC', '乐吧', '聊吧', '综艺');
+        return array('舞区', 'MC', '乐吧', '聊吧', '综艺', '炽星', '超星', '巨星', '明星', '红人');
     }
 
     public function getRoomTypeCount()

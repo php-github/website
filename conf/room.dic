@@ -74,7 +74,7 @@ skip["optional"] = 1
 skip["default"] = 0
 roomType["type"] = "string"
 roomType["optional"] = 1
-roomType["default"] = '炽星'
+roomType["default"] = '舞区'
 
 [updateNoLiveInRoom]
 ctime["type"] = "date"
