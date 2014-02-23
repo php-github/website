@@ -33,8 +33,9 @@ foreach ($arrRid as $strKey => $strRid) {
     $arrRooms[$strRid]['count'] = $arrCount[$strKey];
     $arrUrls[] = "http://v.6.cn/$strRid";
 }
-
+user_error('multi curl begin');
 $arrReturn = multi_curl($arrUrls, 'getRoomInfo');
+user_error('multi curl end');
 $arrReturn = array_filter($arrReturn);
 
 foreach ($arrReturn as $strKey => $arrItem) {
@@ -42,7 +43,6 @@ foreach ($arrReturn as $strKey => $arrItem) {
 }
 
 $objRoomService = new service\Room('club', 'room', CONF_PATH . '/room.dic');
-//file_put_contents('r', serialize($arrRooms));
 $ctime = date('Y-m-d H:i:s', strtotime('now'));
 //$arrRooms = unserialize(file_get_contents('r'));
 foreach ($arrRooms as $arrItem) {
@@ -94,9 +94,12 @@ function multi_curl($arrUrls, $callback)
     $intChunk = 5;
     $arrUrls = array_chunk($arrUrls, $intChunk);
     $arrReturn = array();
+    $intSum = 0;
     foreach ($arrUrls as $arrItem) {
-        sleep(5);
+        sleep(1);
+        user_error('begin fetch');
         $arrReturn = array_merge($arrReturn, classic_curl($arrItem, $callback));
+        user_error("fetch " . count($arrReturn));
     }
     /*
     //retry
