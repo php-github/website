@@ -7,6 +7,7 @@ try {
     $arrRoom['name'] = '';
     $arrRoom['backgroundUrl'] = '';
 }
+$strFlvUrl = $arrRoom['flvUrl'];
 $bdPic = $arrRoom['coverUrl'];
 $bdText = "{$arrRoom['name']} - 正在直播中，速速围观";
 $bdDesc = "来自{$arrRoom['local']}的{$arrRoom['roomType']}秀场";
