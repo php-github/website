@@ -3,6 +3,8 @@ namespace service;
 use Tofu\Model;
 class Room extends \Tofu\Service
 {
+    const RECOMMEND_ROOM_LIMIT = 50;
+
     public function getIndexRoom($arrArguments)
     {
         $objClub = new Model('club', 'room');
@@ -10,7 +12,11 @@ class Room extends \Tofu\Service
         //多取1个，判断是否还有更多
         $intLimit = $arrArguments['limit'] + 1;
         $arrMaxTime = array_pop(iterator_to_array($objClub->find(array(), array('ctime' => 1))->sort(array('ctime' => -1))->limit(1)));
-        $arrRoomList = iterator_to_array($objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $arrArguments['roomType']))->sort(array('weighting' => -1))->skip($arrArguments['skip'])->limit($intLimit));
+        if ('推荐' !== $arrArguments['roomType']) {
+            $arrRoomList = iterator_to_array($objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $arrArguments['roomType']))->sort(array('weighting' => -1))->skip($arrArguments['skip'])->limit($intLimit));
+        } else {
+            $arrRoomList = iterator_to_array($objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1))->sort(array('weighting' => -1))->skip($arrArguments['skip'])->limit(self::RECOMMEND_ROOM_LIMIT));
+        }
 
         $bolHasPrev = true;
         $bolHasMore = false;
@@ -56,7 +62,7 @@ class Room extends \Tofu\Service
 
     public function getRoomTypeName()
     {
-        return array('舞区', 'MC', '乐吧', '聊吧', '综艺', '炽星', '超星', '巨星', '明星', '红人');
+        return array('推荐', '炽星', '超星', '巨星', '明星', '红人', '舞区', 'MC', '乐吧', '聊吧', '综艺');
     }
 
     public function getRoomTypeCount()
@@ -66,7 +72,11 @@ class Room extends \Tofu\Service
 
         $arrRoomType = $this->getRoomTypeName();
         foreach ($arrRoomType as $strRoomType) {
-            $intCount = $objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $strRoomType))->count();
+            if ('推荐' !== $strRoomType) {
+                $intCount = $objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1, 'roomType' => $strRoomType))->count();
+            } else {
+                $intCount = min($objClub->find(array('ctime' => $arrMaxTime['ctime'], 'liveIn' => 1))->count(), self::RECOMMEND_ROOM_LIMIT);
+            }
             $arrCount[$strRoomType] = intval($intCount);
         }
 
