@@ -50,6 +50,9 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
             <div id="duoshuo">
 <?php require(TEMPLATE_PATH . '/duoshuo.tpl');?>
             </div>
+            <div id="album">
+<?php require(TEMPLATE_PATH . '/album.tpl');?>
+            </div>
         </div>
     </div>
 </div>

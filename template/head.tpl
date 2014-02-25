@@ -22,6 +22,8 @@ echo <<<EOF
 EOF;
 ?>
             <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+            <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
             <style type="text/css">
                 .transparent
                 {
