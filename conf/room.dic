@@ -85,3 +85,4 @@ ctime["type"] = "date"
 ctime["optional"] = 0
 
 [getRoomTypeCount]
+[getYesterdayAndTodayLiveRoom]

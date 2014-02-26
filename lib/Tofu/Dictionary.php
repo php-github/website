@@ -18,7 +18,7 @@ class Dictionary
             throw new \InvalidArgumentException('__construct() expects parameter 1 to be array');
         }
         foreach ($arrDictionary as $strKey => $mixVal) {
-            if (!in_array(strval($mixVal['type']), array(self::INT, self::UINT, self::ID, self::DATE, self::STRING))) {
+            if (!in_array(strval($mixVal['type']), array(self::INT, self::UINT, self::ID, self::DATE, self::STRING, self::ARR))) {
                 throw new \InvalidArgumentException('undefined dictionary type');
             }
         }
@@ -41,8 +41,13 @@ class Dictionary
             $strType = $arrDictionary['type'];
             $bolOptional = $arrDictionary['optional'];
             $mixParam = $arrParams[$strKey];
-            if (!$bolOptional && !strlen($arrParams[$strKey])) {
-                throw new \UnexpectedValueException("$strKey is not optional");
+            if (!$bolOptional) {
+                if (is_array($arrParams[$strKey]) && !count($arrParams)) {
+                    throw new \UnexpectedValueException("$strKey is empty array and not optional");
+                }
+                if (!is_array($arrParams[$strKey]) && !strlen($arrParams[$strKey])) {
+                    throw new \UnexpectedValueException("$strKey is not optional");
+                }
             }
             //参数未传，字典定义可选，跳过检查
             if ($bolOptional && !strlen($arrParams[$strKey])) {

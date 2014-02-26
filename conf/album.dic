@@ -1,0 +1,17 @@
+[add]
+allAlbum["type"] = "array"
+allAlbum["optional"] = 0
+auditedAlbum["type"] = "array"
+auditedAlbum["optional"] = 1
+
+[updateById]
+_id["type"] = "id"
+_id["optional"] = 0
+allAlbum["type"] = "array"
+allAlbum["optional"] = 0
+auditedAlbum["type"] = "array"
+auditedAlbum["optional"] = 1
+
+[findById]
+id["type"] = "id"
+id["optional"] = 0

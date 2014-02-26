@@ -49,6 +49,14 @@ class Room extends \Tofu\Service
         return $objModel->toArray();
     }
 
+    public function getYesterdayAndTodayLiveRoom()
+    {
+        $objClub = new Model('club', 'room');
+        //多取1个，判断是否还有更多
+        $arrLiveRoom = iterator_to_array($objClub->find(array('ctime' => array('$gt' => strtotime('-1 day')))));
+        return $arrLiveRoom;
+    }
+
     public function updateNoLiveInRoom($arrArguments)
     {
         $objClub = new Model('club', 'room');
