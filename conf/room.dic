@@ -1,4 +1,6 @@
 [add]
+uid["type"] = "uint"
+uid["optional"] = 0
 name["type"] = "string"
 name["optional"] = 0
 roomId["type"] = "uint"
@@ -29,6 +31,8 @@ liveIn["default"] = 1
 [updateById]
 _id["type"] = "id"
 _id["optional"] = 0
+uid["type"] = "uint"
+uid["optional"] = 0
 name["type"] = "string"
 name["optional"] = 0
 roomId["type"] = "uint"

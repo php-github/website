@@ -7,6 +7,7 @@ class Dictionary
     const ID = 'id';
     const DATE = 'date';
     const STRING = 'string';
+    const ARR = 'array';
 
     protected $_arrDictionary;
 
@@ -63,6 +64,8 @@ class Dictionary
                     $mixParam = strval($mixParam);
                 } else if (self::DATE === $strType) {
                     $mixParam = $this->checkDate($strKey, $mixParam);
+                } else if (self::ARR === $strType) {
+                    $mixParam = $this->checkArray($strKey, $mixParam);
                 }
             } catch (\RangeException $e) {
                 throw new \UnexpectedValueException($e->getMessage());
@@ -166,6 +169,19 @@ class Dictionary
         }
         if (false === $mixParam) {
             throw new \RangeException("$strKey is not a date");
+        }
+        return $mixParam;
+    }
+    static public function checkArray($strKey, $mixParam)
+    {
+        if (!is_string($strKey)) {
+            throw new \InvalidArgumentException("checkArray() expects parameter 1 to be string");
+        }
+        if (!$strKey) {
+            throw new \InvalidArgumentException("checkArray() expects parameter 1 not to be empty");
+        }
+        if (false === is_array($mixParam)) {
+            throw new \RangeException("$strKey is not a array");
         }
         return $mixParam;
     }

@@ -3,27 +3,18 @@ require(__DIR__ . '/../webroot/init.php');
 
 //抓6.cn首页房间信息
 $url = 'http://www.6.cn';
-$cip = $forward = getRandIp();
-$ch = curl_init();  
-curl_setopt($ch, CURLOPT_URL, $url);  
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(  
-    "X-FORWARDED-FOR:$forward",  
-    "CLIENT-IP:$cip"  
-));  
-curl_setopt($ch, CURLOPT_REFERER, '');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_HEADER, 1);
-$contents = curl_exec($ch);
-curl_close($ch);
-
-preg_match_all('/"rid":"([\d]*?)","pic":"([^ ]*?)".*?"isRecommend":(\d*?),"rtype":"([^ ]*?)".*?,"count":"(\d*?)",/', $contents, $arrMatch);
-$arrRid = $arrMatch[1];
-$arrPic = $arrMatch[2];
-$arrIsRecommend = $arrMatch[3];
-$arrRType = $arrMatch[4];
-$arrCount = $arrMatch[5];
+$response = Tofu\Thief::mCurl(array($url));
+$contents = $response[$url];
+preg_match_all('/"uid":"([\d]*?)".*?"rid":"([\d]*?)","pic":"([^ ]*?)".*?"isRecommend":(\d*?),"rtype":"([^ ]*?)".*?,"count":"(\d*?)",/', $contents, $arrMatch);
+$arrUid = $arrMatch[1];
+$arrRid = $arrMatch[2];
+$arrPic = $arrMatch[3];
+$arrIsRecommend = $arrMatch[4];
+$arrRType = $arrMatch[5];
+$arrCount = $arrMatch[6];
 foreach ($arrRid as $strKey => $strRid) {
     $arrRooms[$strRid] = array();
+    $arrRooms[$strRid]['uid'] = $arrUid[$strKey];
     $arrRooms[$strRid]['pic'] = str_replace("\/", "/", $arrPic[$strKey]);
     $arrRooms[$strRid]['is_recommend'] = $arrIsRecommend[$strKey];
     $arrRooms[$strRid]['rtype'] = $arrRType[$strKey];
@@ -34,7 +25,7 @@ foreach ($arrRid as $strKey => $strRid) {
     $arrUrls[] = "http://v.6.cn/$strRid";
 }
 user_error('multi curl begin');
-$arrReturn = multi_curl($arrUrls, 'getRoomInfo');
+$arrReturn = Tofu\Thief::mCurl($arrUrls, 'getRoomInfo');
 user_error('multi curl end');
 $arrReturn = array_filter($arrReturn);
 
@@ -56,6 +47,7 @@ foreach ($arrRooms as $arrItem) {
         $bolUpdate = false;
     }
 
+    $arrData['uid'] = $arrItem['uid'];
     $arrData['name'] = $arrItem['name'];
     $arrData['flvUrl'] = $arrItem['flv_url'];
     $arrData['backgroundUrl'] = $arrItem['background_url'];
@@ -243,7 +235,7 @@ function getRoomInfo($contents)
 }
 
 function rtype2roomType($strRtype) {
-    $arrConf = array('r10' => '炽星', 'r5' => '超星', 'r4' => '巨星', 'r1' => '明星', 'r2' => '红人', 'fu1' => '舞区', 'u2' => 'MC', 'u6' => '乐吧', 'u3' => '聊吧', 'jc' => '综艺');
+    $arrConf = array('r10' => '炽星', 'r5' => '超星', 'r4' => '巨星', 'r1' => '明星', 'r2' => '红人', 'fu1' => '舞区', 'u2' => 'MC', 'u6' => '乐吧', 'u3' => '聊吧', 'jc' => '综艺', 'video' => '视频');
     return $arrConf[$strRtype] ? : '未知';
 }
 
