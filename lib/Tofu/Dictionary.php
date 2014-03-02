@@ -42,7 +42,7 @@ class Dictionary
             $bolOptional = $arrDictionary['optional'];
             $mixParam = $arrParams[$strKey];
             if (!$bolOptional) {
-                if (is_array($arrParams[$strKey]) && !count($arrParams)) {
+                if (is_array($arrParams[$strKey]) && !count($arrParams[$strKey])) {
                     throw new \UnexpectedValueException("$strKey is empty array and not optional");
                 }
                 if (!is_array($arrParams[$strKey]) && !strlen($arrParams[$strKey])) {
@@ -50,11 +50,16 @@ class Dictionary
                 }
             }
             //参数未传，字典定义可选，跳过检查
-            if ($bolOptional && !strlen($arrParams[$strKey])) {
-                if (isset($arrDictionary['default']) && strlen($arrDictionary['default'])) {
-                    $mixParam = $arrDictionary['default'];
-                } else {
-                    continue;
+            if ($bolOptional) {
+                if (is_array($arrParams[$strKey]) && !count($arrParams[$strKey])) {
+                    $mixParam = array();
+                }
+                if (!is_array($arrParams[$strKey]) && !strlen($arrParams[$strKey])) {
+                    if (isset($arrDictionary['default']) && strlen($arrDictionary['default'])) {
+                        $mixParam = $arrDictionary['default'];
+                    } else {
+                        $mixParam = '';
+                    }
                 }
             }
             //检查类型

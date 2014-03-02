@@ -29,12 +29,14 @@ require(TEMPLATE_PATH . '/index/nav-pills.tpl');
             <div class="transparent affix" role="complementary">
 <?php
 require(TEMPLATE_PATH . '/weibo.tpl');
+/*
 $intWidth = 144;
 $intHeight = 108;
 $arrFirstRoom = current($arrRoom['room_list']);
 $strFlvUrl = $arrFirstRoom['flvUrl'];
 $strRoomId = $arrFirstRoom['_id'];
 require(TEMPLATE_PATH . '/room/live.tpl');
+*/
 ?>
 </a>
             </div>

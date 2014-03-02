@@ -40,6 +40,9 @@ foreach ($arrRooms as $arrItem) {
     $objRoomService = new service\Room('club', 'room', CONF_PATH . '/room.dic');
     $bolUpdate = true;
     $arrData = array();
+    if (!isset($arrItem['room_id'])) {
+        continue;
+    }
     try {
         $arrFindRoom = $objRoomService->execute('findByRoomId', (array('roomId' => $arrItem['room_id'])));
         $arrData['_id'] = $arrFindRoom['_id'];
