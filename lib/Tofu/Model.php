@@ -2,6 +2,8 @@
 namespace Tofu;
 class Model
 {
+    static protected $_arrMongoClient = array();
+
     private $_objMongoClient;
 
     private $_objMongoDb;
@@ -34,7 +36,10 @@ class Model
         $this->_strCollection = $strCollection;
 
         //http://cn2.php.net/manual/zh/mongoclient.construct.php
-        $this->_objMongoClient = new \MongoClient($strServer, $arrOptions);
+        if (!self::$_arrMongoClient[$strServer]) {
+            self::$_arrMongoClient[$strServer] = new \MongoClient($strServer, $arrOptions);
+        }
+        $this->_objMongoClient = self::$_arrMongoClient[$strServer];
         $this->_objMongoDb = $this->_objMongoClient->selectDB($strDbName);
         $this->_objCollection = $this->_objMongoDb->$strCollection;
     }
