@@ -49,11 +49,11 @@ require(TEMPLATE_PATH . '/navbar.tpl');
 require(TEMPLATE_PATH . '/room/nav-pills.tpl');
 ?>
         </div>
-        <div class="col-md-6 column">
-            <div class="page-header">
+        <div class="col-md-6 column" data-spy="scroll" data-target="#pills">
+            <div id="live" class="page-header">
                 <?php echo "<h1 align='center'><strong>{$arrRoom['name']}</strong></h1>"; ?>
             </div>
-            <div id="live" align="center">
+            <div align="center">
 <?php require(TEMPLATE_PATH . '/room/live.tpl');?>
             </div>
             <div id="duoshuo">
