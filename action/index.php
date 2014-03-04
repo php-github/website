@@ -9,6 +9,7 @@ $intMoreSkip = $arrRoom['skip'] + $arrRoom['limit'];
 $bolHasMore = $arrRoom['has_more'];
 $bolHasPrev = $arrRoom['has_prev'];
 $strRoomType = $arrRoom['roomType'];
+$strDesc = $strRoomType;
 
 //展示层
 require(TEMPLATE_PATH . '/head.tpl');

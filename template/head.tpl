@@ -1,9 +1,9 @@
 <?php
 if ($strTitle) {
-    $strTitle = $strTitle . ' - ';
+    $strTitle = $strTitle . '-';
 }
 if ($strDesc) {
-    $strDesc = $strDesc. ',';
+    $strDesc = $strDesc. '-';
 }
 if ($strKeywords) {
     $strKeywords = $strKeywords . ',';
@@ -17,8 +17,9 @@ if ($strKeywords) {
 <?php
 echo <<<EOF
             <title>{$strTitle}看秀场 - 美女主播的代言人</title>
-            <meta name="description" content="{$strDesc}看秀场 - 美女主播的代言人" />
-            <meta name="keywords" content="{$strKeywords}看秀场 - 美女视频,美女直播" /> 
+            <meta name="description" content="{$strDesc}看秀场-美女主播的代言人,汇聚数万秀场资源，为您提供一站式的秀场服务。" />
+            <meta name="keywords" content="{$strKeywords}看秀场-美女视频,美女直播" /> 
+            <meta name="robots" content="all" />
 EOF;
 ?>
             <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
