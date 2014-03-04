@@ -67,7 +67,7 @@ foreach ($arrRooms as $arrItem) {
     try {
         if ($bolUpdate) {
             $objRoomService->execute('updateById', $arrData);
-            user_error('update sucess');
+            user_error("update sucess {$arrData['_id']} rid={$arrData['roomId']}");
         } else {
             $objRoomService->execute('add', $arrData);
             user_error('add sucess');
