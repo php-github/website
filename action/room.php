@@ -7,6 +7,15 @@ try {
     $arrRoom['name'] = '';
     $arrRoom['backgroundUrl'] = '';
 }
+
+$objAlbumService = new service\Album('club', 'album', CONF_PATH . '/album.dic');
+try {
+    $arrAlbum = $objAlbumService->execute('findById', array('id' => $_REQUEST['id']), 60);
+} catch (exception $e) {
+    $arrAlbum['allAlbum'] = array();
+}
+$arrAlbum['allAlbum'] = Tofu\SortBy::arrayOrderby($arrAlbum['allAlbum'], 'weighting', SORT_DESC);
+
 $strFlvUrl = $arrRoom['flvUrl'];
 $bdPic = $arrRoom['coverUrl'];
 $bdText = "#看秀场# 我正在看{$arrRoom['name']}的直播，一级棒，速速围观!";

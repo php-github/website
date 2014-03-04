@@ -13,12 +13,12 @@ foreach ($arrRoom as $arrItem) {
     } catch (RuntimeException $e) {
         $arrAlbum = array('_id' => $arrItem['_id']);
     }
-    foreach ($arrTotalPic as $strItem) {
-        $strKey = crc32($strItem);
-        if (!isset($arrAlbum['allAlbum'][$strKey])) {
-            $arrAlbum['allAlbum'][$strKey]['source'] = $strItem;
-            $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace('.jpg', '_s.jpg', $strItem);
-        }
+    foreach ($arrTotalPic as $arrItem) {
+        $strKey = crc32($arrItem['source']);
+        $arrAlbum['allAlbum'][$strKey]['source'] = $arrItem['source'];
+        $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace(array('.jpg', '.png'), array('_s.jpg', '_s.png'), $arrItem['source']);
+        $arrAlbum['allAlbum'][$strKey]['weighting'] = $arrItem['weighting'];
+        $arrAlbum['allAlbum'][$strKey]['title'] = $arrItem['title'];
     }
     if (!isset($arrAlbum['allAlbum'])) {
         user_error("rid = {$arrItem['roomId']} uid = {$arrItem['uid']} allAlbum is empty");
@@ -47,7 +47,10 @@ function fetchPic($intUid)
         $picInfo = $list['content']['picInfoAry'];
         $arrPicInfo = array();
         foreach ($picInfo as $arrItem) {
-            $arrPicInfo[] = $arrItem['sourcepath'];
+            $arrTmp['source'] = $arrItem['sourcepath'];
+            $arrTmp['weighting'] = $arrItem['visit_num'];
+            $arrTmp['title'] = $arrItem['title'];
+            $arrPicInfo[] = $arrTmp;
         }
         $arrTotalPic = array_merge($arrTotalPic, $arrPicInfo);
     } while (count($arrPicInfo));
