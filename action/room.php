@@ -15,6 +15,7 @@ try {
     $arrAlbum['allAlbum'] = array();
 }
 $arrAlbum['allAlbum'] = Tofu\SortBy::arrayOrderby($arrAlbum['allAlbum'], 'weighting', SORT_DESC);
+$intAlbumCount = count($arrAlbum['allAlbum']);
 
 $strFlvUrl = $arrRoom['flvUrl'];
 $bdPic = $arrRoom['coverUrl'];

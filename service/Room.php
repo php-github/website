@@ -75,8 +75,6 @@ class Room extends \Tofu\Service
     public function getRoomTypeCount()
     {
         $objClub = new Model('club', 'room');
-        $arrMaxTime = array_pop(iterator_to_array($objClub->find(array(), array('ctime' => 1))->sort(array('ctime' => -1))->limit(1)));
-
         $arrRoomType = $this->getRoomTypeName();
         foreach ($arrRoomType as $strRoomType) {
             if ('推荐' !== $strRoomType) {
