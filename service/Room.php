@@ -63,6 +63,7 @@ class Room extends \Tofu\Service
         foreach ($arrUnLiveInRoom as $objModel) {
             $objModel->liveIn = 0;
             $objModel->save();
+            sleep(1);
             user_error("{$objModel->roomId} update no liveIn");
         }
     }

@@ -27,6 +27,7 @@ foreach ($arrRoom as $arrItem) {
     if (!isset($arrAlbum['auditedAlbum'])) {
         $arrAlbum['auditedAlbum'] = array();
     }
+    $arrAlbum['allAlbumCount'] = count($arrAlbum['allAlbum']);
     try {
         $objAlbumService->execute('updateById', $arrAlbum);
     } catch (exception $e) {

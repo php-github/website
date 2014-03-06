@@ -3,6 +3,8 @@ allAlbum["type"] = "array"
 allAlbum["optional"] = 0
 auditedAlbum["type"] = "array"
 auditedAlbum["optional"] = 1
+allAlbumCount["type"] = "uint"
+allAlbumCount["optional"] = 0
 
 [updateById]
 _id["type"] = "id"
@@ -11,6 +13,8 @@ allAlbum["type"] = "array"
 allAlbum["optional"] = 0
 auditedAlbum["type"] = "array"
 auditedAlbum["optional"] = 1
+allAlbumCount["type"] = "uint"
+allAlbumCount["optional"] = 0
 
 [findById]
 id["type"] = "id"
