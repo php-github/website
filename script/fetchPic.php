@@ -16,9 +16,8 @@ foreach ($arrRoom as $arrItem) {
     foreach ($arrTotalPic as $arrItem) {
         $strKey = crc32($arrItem['source']);
         $arrAlbum['allAlbum'][$strKey]['source'] = $arrItem['source'];
-        $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace(array('.jpg', '.png'), array('_s.jpg', '_s.png'), $arrItem['source']);
+        $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace(array('.jpg', '.png', '.gif'), array('_s.jpg', '_s.png','_s.gif'), $arrItem['source']);
         $arrAlbum['allAlbum'][$strKey]['weighting'] = $arrItem['weighting'];
-        $arrAlbum['allAlbum'][$strKey]['title'] = $arrItem['title'];
     }
     if (!isset($arrAlbum['allAlbum'])) {
         user_error("rid = {$arrItem['roomId']} uid = {$arrItem['uid']} allAlbum is empty");

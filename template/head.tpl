@@ -1,14 +1,3 @@
-<?php
-if ($strTitle) {
-    $strTitle = $strTitle . '-';
-}
-if ($strDesc) {
-    $strDesc = $strDesc. '-';
-}
-if ($strKeywords) {
-    $strKeywords = $strKeywords . ',';
-}
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--STATUS OK-->
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -16,7 +5,7 @@ if ($strKeywords) {
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <?php
 echo <<<EOF
-            <title>{$strTitle}看秀场 - 美女主播的代言人</title>
+            <title>{$strTitle}</title>
             <meta name="description" content="{$strDesc}看秀场-美女主播的代言人,汇聚数万秀场资源，为您提供一站式的秀场服务。" />
             <meta name="keywords" content="{$strKeywords}看秀场-美女视频,美女直播" /> 
             <meta name="robots" content="all" />

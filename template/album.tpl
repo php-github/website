@@ -37,8 +37,8 @@
 <?php
 foreach ($arrAlbum['allAlbum'] as $arrItem) {
     echo <<<EOF
-<a href="{$arrItem['source']}" title="{$arrItem['title']}" data-gallery>
-    <img src="{$arrItem['thumb']}" alt="{$arrItem['title']}">
+<a href="{$arrItem['source']}" title="{$arrRoom['name']}" data-gallery>
+    <img src="{$arrItem['thumb']}" alt="{$arrRoom['name']}">
 </a>
 EOF;
 }
