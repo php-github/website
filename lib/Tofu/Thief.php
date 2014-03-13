@@ -29,7 +29,7 @@ class Thief
             // set URL and other appropriate options
             curl_setopt($ch, CURLOPT_URL, $url);
 
-            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 15);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_NOSIGNAL, true);
@@ -65,7 +65,7 @@ class Thief
             $contents = curl_multi_getcontent($ch);
             $responses[$url] = false;
             if (empty($contents)) {
-                user_error("$url get contents fail");
+                user_error("$url get contents fail:".curl_error($ch));
             } else {
                 if ($callback) {
                     $responses[$url] = call_user_func($callback, $contents);

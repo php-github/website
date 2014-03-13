@@ -19,12 +19,17 @@ $intAlbumCount = count($arrAlbum['allAlbum']);
 
 $strFlvUrl = $arrRoom['flvUrl'];
 $bdPic = $arrRoom['coverUrl'];
+
 $bdText = "#看秀场# 我正在看{$arrRoom['name']}的直播，一级棒，速速围观!";
 $bdDesc = "来自{$arrRoom['local']}的{$arrRoom['roomType']}秀场";
+
+//seo
+$strTitle = "『{$arrRoom['name']}』_ {$arrRoom['roomType']}秀场 - 看秀场_美女主播的代言人";
+$strDesc = "{$arrRoom['name']}";
+$strKeywords = "{$arrRoom['name']}";
 ?>
 <?php
 //展示层
-$strTitle = urlencode($arrRoom['name']);
 $strLiveIn = $arrRoom['liveIn'] ? '直播中' : '直播已结束';
     $strHead = <<<EOF
 <style type="text/css">
@@ -34,9 +39,7 @@ body{
     background-position: center top;
 }</style>
 EOF;
-$strTitle = "{$arrRoom['name']}";
-$strDesc = "{$arrRoom['name']}";
-$strKeywords = "{$arrRoom['name']}";
+
 require(TEMPLATE_PATH . '/head.tpl');
 ?>
 <body>

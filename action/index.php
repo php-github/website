@@ -9,6 +9,13 @@ $intMoreSkip = $arrRoom['skip'] + $arrRoom['limit'];
 $bolHasMore = $arrRoom['has_more'];
 $bolHasPrev = $arrRoom['has_prev'];
 $strRoomType = $arrRoom['roomType'];
+
+//seo
+if ('推荐' !== $strRoomType) {
+    $strTitle = "『{$strRoomType}秀场』- 看秀场_美女主播的代言人";
+} else {
+    $strTitle = "看秀场_美女主播的代言人";
+}
 $strDesc = $strRoomType;
 
 //展示层

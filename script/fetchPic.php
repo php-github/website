@@ -16,9 +16,8 @@ foreach ($arrRoom as $arrItem) {
     foreach ($arrTotalPic as $arrItem) {
         $strKey = crc32($arrItem['source']);
         $arrAlbum['allAlbum'][$strKey]['source'] = $arrItem['source'];
-        $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace(array('.jpg', '.png'), array('_s.jpg', '_s.png'), $arrItem['source']);
+        $arrAlbum['allAlbum'][$strKey]['thumb'] = str_replace(array('.jpg', '.png', '.gif'), array('_s.jpg', '_s.png','_s.gif'), $arrItem['source']);
         $arrAlbum['allAlbum'][$strKey]['weighting'] = $arrItem['weighting'];
-        $arrAlbum['allAlbum'][$strKey]['title'] = $arrItem['title'];
     }
     if (!isset($arrAlbum['allAlbum'])) {
         user_error("rid = {$arrItem['roomId']} uid = {$arrItem['uid']} allAlbum is empty");
@@ -27,12 +26,13 @@ foreach ($arrRoom as $arrItem) {
     if (!isset($arrAlbum['auditedAlbum'])) {
         $arrAlbum['auditedAlbum'] = array();
     }
+    $arrAlbum['allAlbumCount'] = count($arrAlbum['allAlbum']);
     try {
         $objAlbumService->execute('updateById', $arrAlbum);
     } catch (exception $e) {
         user_error($e->getMessage());
     }
-    user_error($arrItem['_id'] . "fetch ok");
+    user_error($arrAlbum['_id'] . "fetch ok");
 }
 
 function fetchPic($intUid)
@@ -46,11 +46,13 @@ function fetchPic($intUid)
         $list = json_decode($response[$url], true);
         $picInfo = $list['content']['picInfoAry'];
         $arrPicInfo = array();
-        foreach ($picInfo as $arrItem) {
-            $arrTmp['source'] = $arrItem['sourcepath'];
-            $arrTmp['weighting'] = $arrItem['visit_num'];
-            $arrTmp['title'] = $arrItem['title'];
-            $arrPicInfo[] = $arrTmp;
+        if (count($picInfo)) {
+            foreach ($picInfo as $arrItem) {
+                $arrTmp['source'] = $arrItem['sourcepath'];
+                $arrTmp['weighting'] = $arrItem['visit_num'];
+                $arrTmp['title'] = $arrItem['title'];
+                $arrPicInfo[] = $arrTmp;
+            }
         }
         $arrTotalPic = array_merge($arrTotalPic, $arrPicInfo);
     } while (count($arrPicInfo));
