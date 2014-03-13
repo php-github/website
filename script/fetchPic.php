@@ -32,7 +32,7 @@ foreach ($arrRoom as $arrItem) {
     } catch (exception $e) {
         user_error($e->getMessage());
     }
-    user_error($arrItem['_id'] . "fetch ok");
+    user_error($arrAlbum['_id'] . "fetch ok");
 }
 
 function fetchPic($intUid)
@@ -46,11 +46,13 @@ function fetchPic($intUid)
         $list = json_decode($response[$url], true);
         $picInfo = $list['content']['picInfoAry'];
         $arrPicInfo = array();
-        foreach ($picInfo as $arrItem) {
-            $arrTmp['source'] = $arrItem['sourcepath'];
-            $arrTmp['weighting'] = $arrItem['visit_num'];
-            $arrTmp['title'] = $arrItem['title'];
-            $arrPicInfo[] = $arrTmp;
+        if (count($picInfo)) {
+            foreach ($picInfo as $arrItem) {
+                $arrTmp['source'] = $arrItem['sourcepath'];
+                $arrTmp['weighting'] = $arrItem['visit_num'];
+                $arrTmp['title'] = $arrItem['title'];
+                $arrPicInfo[] = $arrTmp;
+            }
         }
         $arrTotalPic = array_merge($arrTotalPic, $arrPicInfo);
     } while (count($arrPicInfo));
