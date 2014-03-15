@@ -17,14 +17,13 @@ try {
 $arrAlbum['allAlbum'] = Tofu\SortBy::arrayOrderby($arrAlbum['allAlbum'], 'weighting', SORT_DESC);
 $intAlbumCount = count($arrAlbum['allAlbum']);
 
-$objMusicService = new service\Album('club', 'music', CONF_PATH . '/music.dic');
+$objMusicService = new Tofu\service('club', 'music', CONF_PATH . '/music.dic');
 try {
-    $arrMusic = $objAlbumService->execute('findById', array('id' => $_REQUEST['id']), 60);
+    $arrMusic = $objMusicService->execute('findById', array('id' => $_REQUEST['id']), 60);
 } catch (exception $e) {
     $arrMusic['allMusic'] = array();
 }
-//var_dump($arrMusic);
-//exit;
+$intMusicCount = count($arrMusic['allMusic']);
 
 $strFlvUrl = $arrRoom['flvUrl'];
 $arrPic = array_slice($arrAlbum['allAlbum'], 0, 10);
@@ -76,11 +75,11 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
             <div id="duoshuo">
 <?php require(TEMPLATE_PATH . '/duoshuo.tpl');?>
             </div>
-            <div id="album">
-<?php require(TEMPLATE_PATH . '/album.tpl');?>
-            </div>
             <div id="audio">
 <?php require(TEMPLATE_PATH . '/room/audio.tpl');?>
+            </div>
+            <div id="album">
+<?php require(TEMPLATE_PATH . '/album.tpl');?>
             </div>
         </div>
     </div>
