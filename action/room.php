@@ -17,6 +17,15 @@ try {
 $arrAlbum['allAlbum'] = Tofu\SortBy::arrayOrderby($arrAlbum['allAlbum'], 'weighting', SORT_DESC);
 $intAlbumCount = count($arrAlbum['allAlbum']);
 
+$objMusicService = new service\Album('club', 'music', CONF_PATH . '/music.dic');
+try {
+    $arrMusic = $objAlbumService->execute('findById', array('id' => $_REQUEST['id']), 60);
+} catch (exception $e) {
+    $arrMusic['allMusic'] = array();
+}
+//var_dump($arrMusic);
+//exit;
+
 $strFlvUrl = $arrRoom['flvUrl'];
 $bdPic = $arrRoom['coverUrl'];
 
@@ -65,6 +74,9 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
             </div>
             <div id="album">
 <?php require(TEMPLATE_PATH . '/album.tpl');?>
+            </div>
+            <div id="audio">
+<?php require(TEMPLATE_PATH . '/room/audio.tpl');?>
             </div>
         </div>
     </div>
