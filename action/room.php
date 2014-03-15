@@ -27,7 +27,11 @@ try {
 //exit;
 
 $strFlvUrl = $arrRoom['flvUrl'];
-$bdPic = $arrRoom['coverUrl'];
+$arrPic = array_slice($arrAlbum['allAlbum'], 0, 10);
+foreach ($arrPic as $arrItem) {
+    $strPic .= $arrItem['source'].'||';
+}
+$bdPic = trim($arrRoom['coverUrl'].'||'.$strPic, '||');
 
 $bdText = "#看秀场# 我正在看{$arrRoom['name']}的直播，一级棒，速速围观!";
 $bdDesc = "来自{$arrRoom['local']}的{$arrRoom['roomType']}秀场";
