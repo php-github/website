@@ -90,7 +90,7 @@ class Service
     protected function getCacheKey($strMethodName, $arrArguments)
     {
         $strClassName = get_class($this);
-        return sprintf("%s-%s-%s", $strClassName, $strMethodName, json_encode($arrArguments));
+        return sprintf("%s-%s-%s-%s-%s", $this->strModuleName, $this->strModelName, $strClassName, $strMethodName, json_encode($arrArguments));
     }
 
     public function find($arrQuery)

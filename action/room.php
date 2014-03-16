@@ -25,6 +25,13 @@ try {
 }
 $intMusicCount = count($arrMusic['allMusic']);
 
+$objProfileService = new Tofu\service('club', 'profile', CONF_PATH . '/profile.dic');
+try {
+    $arrProfile = $objProfileService->execute('findById', array('id' => $_REQUEST['id']), 60);
+} catch (exception $e) {
+    $arrProfile = array();
+}
+
 $strFlvUrl = $arrRoom['flvUrl'];
 $arrPic = array_slice($arrAlbum['allAlbum'], 0, 10);
 foreach ($arrPic as $arrItem) {
@@ -67,7 +74,7 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
         </div>
         <div class="col-md-6 column" data-spy="scroll" data-target="#pills">
             <div id="live" class="page-header">
-                <?php echo "<h1 align='center'><strong>{$arrRoom['name']}</strong></h1>"; ?>
+                <?php echo "<h1 align='center'><strong>{$arrRoom['name']}</strong><img src='{$arrProfile['avatar']}'></h1>"; ?>
             </div>
             <div align="center">
 <?php require(TEMPLATE_PATH . '/room/live.tpl');?>
@@ -80,6 +87,9 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
             </div>
             <div id="album">
 <?php require(TEMPLATE_PATH . '/album.tpl');?>
+            </div>
+            <div id="profile">
+<?php require(TEMPLATE_PATH . '/room/profile.tpl');?>
             </div>
         </div>
     </div>
