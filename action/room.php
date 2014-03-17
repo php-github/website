@@ -73,8 +73,13 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
 ?>
         </div>
         <div class="col-md-6 column" data-spy="scroll" data-target="#pills">
-            <div id="live" class="page-header">
-                <?php echo "<h1 align='center'><strong>{$arrRoom['name']}</strong><img src='{$arrProfile['avatar']}'></h1>"; ?>
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="<?php echo $arrProfile['avatar'];?>" alt="<?php echo $arrRoom['name'];?>" width="50" height="50">
+                </a>
+                <div class="media-body">
+                    <h1 class="media-heading"><?php echo $arrRoom['name'];?></h4>
+                </div>
             </div>
             <div align="center">
 <?php require(TEMPLATE_PATH . '/room/live.tpl');?>
