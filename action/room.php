@@ -73,7 +73,7 @@ require(TEMPLATE_PATH . '/room/nav-pills.tpl');
 ?>
         </div>
         <div class="col-md-6 column" data-spy="scroll" data-target="#pills">
-            <div class="media">
+            <div class="media" align="center">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="<?php echo $arrProfile['avatar'];?>" alt="<?php echo $arrRoom['name'];?>" width="50" height="50">
                 </a>
